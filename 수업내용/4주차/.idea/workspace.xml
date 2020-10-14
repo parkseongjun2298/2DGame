@@ -19,7 +19,26 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cf91987-e033-47c8-ab2a-653ef3d31683" name="Default Changelist" comment="" />
+    <list default="true" id="6cf91987-e033-47c8-ab2a-653ef3d31683" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../기말 프로젝트/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../기말 프로젝트/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../기말 프로젝트/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../기말 프로젝트/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../기말 프로젝트/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../기말 프로젝트/.idea/기말 프로젝트.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../기말 프로젝트/gfw/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../기말 프로젝트/gfw/image.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../기말 프로젝트/gobj.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../기말 프로젝트/main_state.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../기말 프로젝트/player.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3주차-1/.idea/3주차-1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3주차-1/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3주차-1/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3주차-1/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3주차-1/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../3주차-1/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +64,8 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../기말 프로젝트" />
   </component>
   <component name="RunManager" selected="Python.main_state">
     <configuration name="game_state" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -208,10 +228,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="433" y="276" key="FileChooserDialogImpl" timestamp="1602658540996">
+    <state x="433" y="276" key="FileChooserDialogImpl" timestamp="1602660610365">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="433" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602658540996" />
+    <state x="433" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602660610365" />
     <state width="1129" height="279" key="GridCell.Tab.0.bottom" timestamp="1602654774559">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
