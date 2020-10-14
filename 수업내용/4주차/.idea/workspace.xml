@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cf91987-e033-47c8-ab2a-653ef3d31683" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../5주차/gfw.py" beforeDir="false" afterPath="$PROJECT_DIR$/../5주차/gfw.py" afterDir="false" />
-    </list>
+    <list default="true" id="6cf91987-e033-47c8-ab2a-653ef3d31683" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,7 +45,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../5주차" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="Python.main_state">
     <configuration name="game_state" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -210,10 +208,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="433" y="276" key="FileChooserDialogImpl" timestamp="1602657232507">
+    <state x="433" y="276" key="FileChooserDialogImpl" timestamp="1602658540996">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="433" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602657232507" />
+    <state x="433" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602658540996" />
     <state width="1129" height="279" key="GridCell.Tab.0.bottom" timestamp="1602654774559">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
