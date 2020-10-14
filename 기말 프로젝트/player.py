@@ -13,25 +13,29 @@ class IdleState:
         return IdleState.singleton
 
     def __init__(self):
-        self.image = gfw.image.load(RES_DIR + '/GingerCookie.png')
+        self.image = gfw.image.load(RES_DIR + '/GingerCookie2-002.png')
 
 
     def enter(self):
         self.time = 0
         self.fidx = 0
+
     def exit(self):
         pass
     def draw(self):
-        width = 290
+        width = 291
+        height= 291
         sx = self.fidx * width
-        self.image.clip_draw(sx, 0, width, 290, *self.player.pos)
+
+        self.image.clip_draw(sx, 0, width, height, *self.player.pos)
 
     def update(self):
         self.time += gfw.delta_time
         # self.player.pos = point_add(self.player.pos, self.player.delta)
         move_obj(self.player)
         frame = self.time * 5
-        self.fidx = int(frame) % 5
+        self.fidx = int(frame) % 8
+
 
     def handle_event(self, e):
         pair = (e.type, e.key)
@@ -49,7 +53,7 @@ class FireState:
         return FireState.singleton
 
     def __init__(self):
-        self.image = gfw.image.load(RES_DIR +'/GingerCookie.png')
+        self.image = gfw.image.load(RES_DIR +'/GingerCookie2-003.png')
 
     def enter(self):
         self.time = 0
@@ -57,16 +61,18 @@ class FireState:
     def exit(self):
         pass
     def draw(self):
-        width = 132
+        width = 291
+        height=291
         sx = self.fidx * width
         x,y = self.player.pos
-        self.image.clip_draw(sx, 0, width, 100, x + 16, y)
+        self.image.clip_draw(sx, 0, width, height, *self.player.pos)
+        #self.image.clip_draw(sx, 0, width, 100, x + 16, y)
 
     def update(self):
         self.time += gfw.delta_time
-        frame = self.time * 5
+        frame = self.time * 7
         print(frame)
-        if frame < 5:
+        if frame < 8:
             self.fidx = int(frame)
         else:
             self.player.set_state(IdleState)
@@ -100,8 +106,8 @@ class Player:
         self.time = 0
         self.state = None
         self.set_state(IdleState)
-        self.image = gfw.image.load(RES_DIR + '/GingerCookie.png')
-        self.image2 = gfw.image.load(RES_DIR + '/GingerCookie.png')
+        self.image = gfw.image.load(RES_DIR + '/GingerCookie2-002.png')
+        self.image2 = gfw.image.load(RES_DIR + '/GingerCookie2-003.png')
 
     def set_state(self, clazz):
         if self.state != None:

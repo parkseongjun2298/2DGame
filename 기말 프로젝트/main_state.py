@@ -1,9 +1,9 @@
 import gfw
 from pico2d import *
 from player import Player
-
+import title_state
 def enter():
-    global grass, player
+    global  player
     player = Player()
 
 def update():
