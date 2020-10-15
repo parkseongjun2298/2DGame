@@ -54,6 +54,9 @@ class FireState:
 
     def __init__(self):
         self.image = gfw.image.load(RES_DIR +'/GingerCookie2-003.png')
+        self.radius = self.image.h//2
+        self.pos = 100, 100
+        self.delta = 0, 0
 
     def enter(self):
         self.time = 0
@@ -72,10 +75,20 @@ class FireState:
         self.time += gfw.delta_time
         frame = self.time * 7
         print(frame)
+
         if frame < 8:
             self.fidx = int(frame)
         else:
             self.player.set_state(IdleState)
+
+        y = self.pos.y
+        dy = self.delta.y
+        y += dy
+        gravity = 0.1
+        dy -= gravity
+        self.pos.y= y
+        self.delta.y = dy
+
 
     def handle_event(self, e):
         pass
