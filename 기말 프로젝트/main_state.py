@@ -1,15 +1,19 @@
 import gfw
 from pico2d import *
 from player import Player
+from background import  Background
 import title_state
 def enter():
     global  player
+    global background
     player = Player()
-
+    background=Background()
 def update():
+    background.update()
     player.update()
 
 def draw():
+    background.draw()
     player.draw()
 
 def handle_event(e):

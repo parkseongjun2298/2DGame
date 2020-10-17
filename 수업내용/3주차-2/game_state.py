@@ -12,7 +12,7 @@ def update():
     boy.update()
 
 def draw():
-    #grass.draw()
+    grass.draw()
     boy.draw()
 
 def handle_event(e):

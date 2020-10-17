@@ -81,13 +81,7 @@ class FireState:
         else:
             self.player.set_state(IdleState)
 
-        y = self.pos.y
-        dy = self.delta.y
-        y += dy
-        gravity = 0.1
-        dy -= gravity
-        self.pos.y= y
-        self.delta.y = dy
+
 
 
     def handle_event(self, e):
@@ -110,7 +104,7 @@ class Player:
     #constructor
     def __init__(self):
         # self.pos = get_canvas_width() // 2, get_canvas_height() // 2
-        self.pos = 100, 100
+        self.pos = 100,200
         self.delta = 0, 0
         self.fidx = 0
         self.target = None
