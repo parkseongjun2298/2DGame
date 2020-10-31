@@ -1,6 +1,7 @@
 import time
 from pico2d import *
 import gfw.image
+import gfw.world
 running = True
 stack = None
 frame_interval = 0.01

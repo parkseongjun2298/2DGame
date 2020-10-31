@@ -7,7 +7,7 @@ class Enemy:
     SIZE = 96
     def __init__(self, x, speed, level):
         # self.pos = get_canvas_width() // 2, get_canvas_height() // 2
-        self.x, self.y = x, get_canvas_height() + Enemy.SIZE
+
         self.dx, self.dy = 0, speed
         self.level = level
         self.max_life = level * 100

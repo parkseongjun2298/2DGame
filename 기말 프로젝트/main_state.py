@@ -2,19 +2,26 @@ import gfw
 from pico2d import *
 from player import Player
 from background import  Background
+import gobj
 import title_state
 def enter():
+    gfw.world.init(['background', 'player'])
+    #넣는 순서 맨뒤부터임
     global  player
-    global background
     player = Player()
+    gfw.world.add(gfw.layer.player,player)
+    global background
     background=Background()
+    gfw.world.add(gfw.layer.background, background)
 def update():
-    background.update()
-    player.update()
+    gfw.world.update()
+
 
 def draw():
-    background.draw()
-    player.draw()
+    gfw.world.draw()
+
+    gobj.draw_collision_box()
+
 
 def handle_event(e):
     global player
@@ -24,6 +31,8 @@ def handle_event(e):
     elif e.type == SDL_KEYDOWN:
         if e.key == SDLK_ESCAPE:
             gfw.pop()
+
+
 
     player.handle_event(e)
 

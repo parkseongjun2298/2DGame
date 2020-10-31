@@ -1,6 +1,6 @@
 import random
 from pico2d import *
-
+import gfw
 RES_DIR = 'res/'
 
 
@@ -16,6 +16,27 @@ def point_add(point1, point2):
 
 def move_obj(obj):
     obj.pos = point_add(obj.pos, obj.delta)
+
+
+def set_pos(obj,posx,posy):
+	obj.pos=posx,posy
+def init_delta(obj,posx,posy):
+	obj.delta=posx,posy
+def collides_box(a, b):
+	(la, ba, ra, ta) = a.get_bb()
+	(lb, bb, rb, tb) = b.get_bb()
+
+	if la > rb: return False
+	if ra < lb: return False
+	if ba > tb: return False
+	if ta < bb: return False
+
+	return True
+
+def draw_collision_box():
+	for obj in gfw.world.all_objects():
+		if hasattr(obj, 'get_bb'):
+			draw_rectangle(*obj.get_bb())
 
 
 if __name__ == "__main__":
