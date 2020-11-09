@@ -15,7 +15,6 @@ class IdleState:
 
     def __init__(self):
         self.image = gfw.image.load(RES_DIR + '/GingerCookie2-002.png')
-
     def enter(self):
         self.time = 0
         self.fidx = 0
@@ -32,9 +31,7 @@ class IdleState:
 
     def update(self):
         self.time += gfw.delta_time
-        # self.player.pos = point_add(self.player.pos, self.player.delta)
-        # move_obj(self.player)
-        #print(self.player.pos)
+
         frame = self.time * 5
         self.fidx = int(frame) % 8
 
