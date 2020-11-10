@@ -1,0 +1,5 @@
+
+mkdir out
+curl https://www.spriters-resource.com/mobile/cookierun/ > out/cookierun.html
+
+py cookie_list.py | sh

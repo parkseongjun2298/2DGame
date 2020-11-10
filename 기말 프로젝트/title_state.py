@@ -1,6 +1,6 @@
 from pico2d import *
 import gfw
-import main_state
+import horz_state
 from gobj import *
 
 def enter():
@@ -19,7 +19,7 @@ def handle_event(e):
      elif (e.type, e.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
           gfw.quit()
      elif (e.type, e.key) == (SDL_KEYDOWN, SDLK_SPACE):
-          gfw.push(main_state)
+          gfw.push(horz_state)
 def exit():
     global image
     del image

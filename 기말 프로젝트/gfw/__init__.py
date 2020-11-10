@@ -1,7 +1,11 @@
+# version 2020-0927
 import time
 from pico2d import *
-import gfw.image
+import random
 import gfw.world
+import gfw.image
+import gfw.font
+
 running = True
 stack = None
 frame_interval = 0.01
@@ -16,7 +20,7 @@ def run(start_state):
     running = True
     stack = [start_state]
 
-    w, h = 1280, 720
+    w,h = 800,600
     if hasattr(start_state, 'canvas_width'): w = start_state.canvas_width
     if hasattr(start_state, 'canvas_height'): h = start_state.canvas_height
 
