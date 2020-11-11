@@ -20,7 +20,7 @@ def run(start_state):
     running = True
     stack = [start_state]
 
-    w,h = 800,600
+    w,h = 1120,630
     if hasattr(start_state, 'canvas_width'): w = start_state.canvas_width
     if hasattr(start_state, 'canvas_height'): h = start_state.canvas_height
 

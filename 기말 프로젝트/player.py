@@ -69,9 +69,7 @@ class Player:
         size = PLAYER_SIZE * self.mag, PLAYER_SIZE * self.mag
         self.image.clip_draw(x, y, PLAYER_SIZE, PLAYER_SIZE, *self.pos, *size)
 
-        if self.cookie_time < 3.0:
-            font = gfw.font.load(gobj.res('ENCR10B.TTF'), 30)
-            font.draw(20, 20, self.cookie_name)
+
 
     def magnify(self):
         self.mag_speed = 1.0
@@ -87,7 +85,8 @@ class Player:
             self.state = Player.DOUBLE_JUMP
         self.jump_speed = Player.JUMP * self.mag
     def slide(self):
-        if self.state != Player.RUNNING: return
+        if self.state != Player.RUNNING:
+            return
         self.state = Player.SLIDING
         self.time = 0.0
     def update(self):
@@ -175,11 +174,11 @@ class Player:
         if e.type == SDL_KEYDOWN:
             if e.key == SDLK_RETURN:
                 self.slide()
-            elif e.key == SDLK_SPACE or e.key == SDLK_UP:
+            elif e.key == SDLK_SPACE:
                 self.jump()
             elif e.key == SDLK_DOWN:
                 self.move_down_from_platform()
-            elif e.key == SDLK_m:
+            elif e.key == SDLK_m: #몸커지는아이탬
                 if self.mag == 2 or self.mag_speed > 0:
                     self.reduce()
                 else:
