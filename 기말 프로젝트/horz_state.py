@@ -60,7 +60,7 @@ def check_obstacles():
 
 def draw():
     gfw.world.draw()
-    gobj.draw_collision_box()
+    #gobj.draw_collision_box()
 
 def handle_event(e):
     # prev_dx = boy.dx
