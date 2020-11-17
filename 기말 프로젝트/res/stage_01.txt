@@ -13,7 +13,7 @@ PPPPPPP---PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
   1232112                Y                                                                          |
                                                                                                     |
      Y                Z                      Z             22222222321312312321312            21212 |
-12322  X  X  12 X Z      X Y X Z Y           1111111111111                    3123123134231231      |
+                                                                                                    |
                                                                                                     |
                    1232                                                                             |
 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO|
