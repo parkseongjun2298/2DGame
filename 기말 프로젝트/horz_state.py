@@ -6,13 +6,17 @@ from player import Player
 from background import HorzScrollBackground
 from platform import Platform
 from jelly import Jelly
+from item import Item
+from fireitem import FireItem
 import stage_gen
 
 canvas_width = 1120
 canvas_height = 630
 
+
+
 def enter():
-    gfw.world.init(['bg', 'platform', 'enemy', 'item', 'player'])
+    gfw.world.init(['bg', 'platform', 'enemy', 'jelly','item','fireitem', 'player'])
 
     center = get_canvas_width() // 2, get_canvas_height() // 2
 
@@ -36,11 +40,14 @@ def update():
 
     dx = -300 * gfw.delta_time
 
-    for layer in range(gfw.layer.platform, gfw.layer.item + 1):
+    for layer in range(gfw.layer.platform, gfw.layer.fireitem+1):
         for obj in gfw.world.objects_at(layer):
-            obj.move(dx)
+            obj.move(dx) #안에값 커지면 빨라짐
+
 
     check_items()
+    check_fireitems()
+    check_jelly()
     check_obstacles()
 
     stage_gen.update(dx)
@@ -49,6 +56,16 @@ def check_items():
     for item in gfw.world.objects_at(gfw.layer.item):
         if gobj.collides_box(player, item):
             gfw.world.remove(item)
+            break
+def check_fireitems():
+    for fireitem in gfw.world.objects_at(gfw.layer.fireitem):
+        if gobj.collides_box(player, fireitem):
+            gfw.world.remove(fireitem)
+            break
+def check_jelly():
+    for jelly in gfw.world.objects_at(gfw.layer.jelly):
+        if gobj.collides_box(player, jelly):
+            gfw.world.remove(jelly)
             break
 
 def check_obstacles():
@@ -60,7 +77,7 @@ def check_obstacles():
 
 def draw():
     gfw.world.draw()
-    #gobj.draw_collision_box()
+    gobj.draw_collision_box()
 
 def handle_event(e):
     # prev_dx = boy.dx

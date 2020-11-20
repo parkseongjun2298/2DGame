@@ -4,7 +4,8 @@ from platform import Platform
 from jelly import Jelly
 import gobj
 from factory import Factory
-
+from item import Item
+from fireitem import FireItem
 UNIT_PER_LINE = 100
 SCREEN_LINES = 10
 BLOCK_SIZE = 60
@@ -47,8 +48,14 @@ ignore_char_map = set()
 def create_object(ch, x, y):
     if ch in ['1','2','3','4']:
         obj = Jelly(ord(ch) - ord('1'), x, y)
-        gfw.world.add(gfw.layer.item, obj)
+        gfw.world.add(gfw.layer.jelly, obj)
         # print('creating Jelly', x, y)
+    elif ch in ['5']:
+        obj = Item(ord(ch) - ord('5'), x, y)
+        gfw.world.add(gfw.layer.item, obj)
+    elif ch in ['6']:
+        obj = FireItem(ord(ch) - ord('6'), x, y)
+        gfw.world.add(gfw.layer.fireitem, obj)
     elif ch in ['O','P','Q']:
         dy = 1 if ch == 'Q' else 3.8
         y -= int(dy * BLOCK_SIZE) // 2
