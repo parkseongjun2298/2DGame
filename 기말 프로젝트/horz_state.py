@@ -8,6 +8,7 @@ from platform import Platform
 from jelly import Jelly
 from item import Item
 from fireitem import FireItem
+
 import stage_gen
 
 canvas_width = 1120
@@ -16,11 +17,11 @@ canvas_height = 630
 
 
 def enter():
-    gfw.world.init(['bg', 'platform', 'enemy', 'jelly','item','fireitem', 'player'])
+    gfw.world.init(['bg', 'platform', 'enemy', 'jelly','item','fireitem', 'player','Ui'])
 
     center = get_canvas_width() // 2, get_canvas_height() // 2
 
-    for n, speed in [(1,10), (2,100), (3,150)]:
+    for n, speed in [(1,100)]:
         bg = HorzScrollBackground('cookie_run_bg_%d.png' % n)
         bg.speed = speed
         gfw.world.add(gfw.layer.bg, bg)
@@ -42,7 +43,7 @@ def update():
 
     for layer in range(gfw.layer.platform, gfw.layer.fireitem+1):
         for obj in gfw.world.objects_at(layer):
-            obj.move(dx) #안에값 커지면 빨라짐
+            obj.move(dx*player.FireSpeed) #안에값 커지면 빨라짐
 
 
     check_items()
@@ -56,11 +57,14 @@ def check_items():
     for item in gfw.world.objects_at(gfw.layer.item):
         if gobj.collides_box(player, item):
             gfw.world.remove(item)
+            player.BigCheck=True
+
             break
 def check_fireitems():
     for fireitem in gfw.world.objects_at(gfw.layer.fireitem):
         if gobj.collides_box(player, fireitem):
             gfw.world.remove(fireitem)
+            player.FireCheck = True
             break
 def check_jelly():
     for jelly in gfw.world.objects_at(gfw.layer.jelly):

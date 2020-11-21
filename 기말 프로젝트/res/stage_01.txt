@@ -4,7 +4,7 @@
                                                                                                     |
                          1                                                      1                   |
                        1   1         TTT           TTT          TTT           1   1                 |
-             5 6        1     1                                                1     1              |
+             5 6      1     1               5  6                             1     1        6       |
            11111111  1   Y   1111111111111   111  222222  222  33333  3333  1  ZZZ  1   1111111     |
 PPPPPPP---PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP|
 ----------------------------------------------------------------------------------------------------|

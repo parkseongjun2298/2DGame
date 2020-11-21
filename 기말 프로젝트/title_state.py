@@ -5,7 +5,7 @@ from gobj import *
 
 def enter():
     global image
-    image=load_image(RES_DIR +'/land0001_tm001_bg1.png')
+    image=load_image(RES_DIR +'/cookie_run_bg_1.png')
 
 def update():
     pass

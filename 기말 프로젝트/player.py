@@ -47,6 +47,11 @@ class Player:
         # self.anims = Player.ANIMS_11x6
         self.change_image(0)
         self.state = Player.RUNNING
+        self.BigCheck=False
+        self.BigTime=0
+        self.FireCheck=False
+        self.FireTime=0
+        self.FireSpeed=1
         # self.char_time = 0
         # self.cookie_name = 'Brave Cookie'
 
@@ -116,6 +121,20 @@ class Player:
                     self.state = Player.RUNNING
                     self.jump_speed = 0
                     # print('Now running', t, foot)
+        if self.BigCheck==True:
+                self.BigTime+=gfw.delta_time
+                self.magnify()
+                if self.BigTime>=4:
+                    self.reduce()
+                    self.BigTime=0
+                    self.BigCheck=False
+        if self.FireCheck==True:
+                self.FireTime+=gfw.delta_time
+                self.FireSpeed=2
+                if self.FireTime>=4:
+                    self.FireSpeed = 1
+                    self.FireTime=0
+                    self.FireCheck=False
 
     def get_platform(self, foot):
         selected = None
@@ -178,11 +197,7 @@ class Player:
                 self.jump()
             elif e.key == SDLK_DOWN:
                 self.move_down_from_platform()
-            elif e.key == SDLK_m: #몸커지는아이탬
-                if self.mag == 2 or self.mag_speed > 0:
-                    self.reduce()
-                else:
-                    self.magnify()
+
             elif e.key == SDLK_LEFTBRACKET:
                 self.change_image(-1)
             elif e.key == SDLK_RIGHTBRACKET:
