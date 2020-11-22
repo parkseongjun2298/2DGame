@@ -45,7 +45,8 @@ class Player:
         self.mag = 1
         self.mag_speed = 0
         # self.anims = Player.ANIMS_11x6
-        self.change_image(0)
+        self.imagenum=1
+        self.change_image(self.imagenum)
         self.state = Player.RUNNING
         self.BigCheck=False
         self.BigTime=0
@@ -228,7 +229,7 @@ class Player:
         if not hasattr(self, 'cookie_chars'):
             with open(gobj.res('cookies.json'), 'r') as f:
                 self.cookie_chars = json.load(f)
-            self.cookie_index = 0
+            self.cookie_index = diff
         else:
             cookie = self.cookie_chars[self.cookie_index]
             sheet = '../w09-res/out/%s_sheet.png' % cookie["id"]

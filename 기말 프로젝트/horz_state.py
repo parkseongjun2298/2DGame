@@ -5,6 +5,7 @@ import gobj
 from player import Player
 from background import HorzScrollBackground
 from platform import Platform
+from hpui import Hpui
 from jelly import Jelly
 from item import Item
 from fireitem import FireItem
@@ -17,7 +18,7 @@ canvas_height = 630
 
 
 def enter():
-    gfw.world.init(['bg', 'platform', 'enemy', 'jelly','item','fireitem', 'player','Ui'])
+    gfw.world.init(['bg', 'platform', 'enemy', 'jelly','item','fireitem', 'player','ui'])
 
     center = get_canvas_width() // 2, get_canvas_height() // 2
 
@@ -30,6 +31,11 @@ def enter():
     player = Player()
     player.bg = bg
     gfw.world.add(gfw.layer.player, player)
+
+    global hpui
+    hpui=Hpui()
+    #gfw.world.add(gfw.layer.ui, hpui)
+
 
     stage_gen.load(gobj.res('stage_01.txt'))
 

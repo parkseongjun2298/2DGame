@@ -4,6 +4,7 @@ import gfw
 
 RES_DIR = './res/'
 
+
 def res(file):
 	return RES_DIR + file
 
@@ -47,7 +48,8 @@ def draw_collision_box():
 
 def mouse_xy(event):
     return event.x, get_canvas_height() - event.y - 1
-
+def mouse_x(event):
+    return event.x
 def pt_in_rect(point, rect):
     (x, y) = point
     (l, b, r, t) = rect
@@ -75,6 +77,15 @@ class ImageObject:
     def __setstate__(self, dict):
         self.__dict__.update(dict)
         self.image = gfw.image.load(res(self.imageName))
+
+class Temp:
+    def __init__(self):
+        self.temp=0
+    def draw(self):
+        pass
+    def update(self):
+        pass
+
 
 if __name__ == "__main__":
 	print("This file is not supposed to be executed directly.")
