@@ -6,6 +6,8 @@ import gobj
 from factory import Factory
 from item import Item
 from fireitem import FireItem
+from coin import Coin
+from hpitem import Hpitem
 UNIT_PER_LINE = 100
 SCREEN_LINES = 10
 BLOCK_SIZE = 60
@@ -56,6 +58,12 @@ def create_object(ch, x, y):
     elif ch in ['6']:
         obj = FireItem(ord(ch) - ord('6'), x, y)
         gfw.world.add(gfw.layer.fireitem, obj)
+    elif ch in ['7']:
+        obj = Hpitem(ord(ch) - ord('7'), x, y)
+        gfw.world.add(gfw.layer.hpitem, obj)
+    elif ch in ['8']:
+        obj = Coin(ord(ch) - ord('8'), x, y)
+        gfw.world.add(gfw.layer.coin, obj)
     elif ch in ['O','P','Q']:
         dy = 1 if ch == 'Q' else 3.8
         y -= int(dy * BLOCK_SIZE) // 2

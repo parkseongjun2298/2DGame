@@ -4,18 +4,16 @@ import gobj
 
 from gobj import *
 
-class Hpbarui:
+class Jellyui:
    def __init__(self):
-     self.sizex=530
-     self.sizex2=650
-     self.image = gfw.image.load(gobj.res('hpbar.png'))
+
+     self.image = gfw.image.load(gobj.res('jellyui.png'))
 
    def update(self):
-      self.sizex -= 0.25
-      self.sizex2-=0.125
+      pass
 
    def draw(self):
-      self.image.clip_draw(0,0,530,50,self.sizex2,600,self.sizex,30)
+      self.image.clip_draw(0,0,100,100,340,525,50,50)
 
    def handle_event(self,e):
       pass

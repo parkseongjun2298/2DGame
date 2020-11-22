@@ -5,11 +5,17 @@ import gobj
 from player import Player
 from background import HorzScrollBackground
 from platform import Platform
+
 from hpui import Hpui
 from hpbarui import Hpbarui
+from jellyui import Jellyui
+from coinui import Coinui
+
 from jelly import Jelly
 from item import Item
 from fireitem import FireItem
+from coin import Coin
+from hpitem import Hpitem
 
 import stage_gen
 
@@ -19,7 +25,7 @@ canvas_height = 630
 
 
 def enter():
-    gfw.world.init(['bg', 'platform', 'enemy', 'jelly','item','fireitem', 'player','ui'])
+    gfw.world.init(['bg', 'platform', 'enemy', 'jelly','coin','item','hpitem','fireitem', 'player','ui'])
 
     center = get_canvas_width() // 2, get_canvas_height() // 2
 
@@ -41,6 +47,14 @@ def enter():
     hpbar = Hpbarui()
     gfw.world.add(gfw.layer.ui, hpbar)
 
+    global coinui
+    coinui=Coinui()
+    gfw.world.add(gfw.layer.ui, coinui)
+
+    global jellyui
+    jellyui = Jellyui()
+    gfw.world.add(gfw.layer.ui, jellyui)
+
     stage_gen.load(gobj.res('stage_01.txt'))
 
 paused = False
@@ -58,7 +72,9 @@ def update():
 
     check_items()
     check_fireitems()
+    check_hpitems()
     check_jelly()
+    check_coin()
     check_obstacles()
 
     stage_gen.update(dx)
@@ -75,11 +91,24 @@ def check_fireitems():
         if gobj.collides_box(player, fireitem):
             gfw.world.remove(fireitem)
             player.FireCheck = True
+
+            break
+def check_hpitems():
+    for hpitem in gfw.world.objects_at(gfw.layer.hpitem):
+        if gobj.collides_box(player, hpitem):
+            gfw.world.remove(hpitem)
+            hpbar.sizex += 20
+            hpbar.sizex2 += 10
             break
 def check_jelly():
     for jelly in gfw.world.objects_at(gfw.layer.jelly):
         if gobj.collides_box(player, jelly):
             gfw.world.remove(jelly)
+            break
+def check_coin():
+    for coin in gfw.world.objects_at(gfw.layer.coin):
+        if gobj.collides_box(player, coin):
+            gfw.world.remove(coin)
             break
 
 def check_obstacles():
