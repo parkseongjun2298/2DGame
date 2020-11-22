@@ -6,6 +6,7 @@ from player import Player
 from background import HorzScrollBackground
 from platform import Platform
 from hpui import Hpui
+from hpbarui import Hpbarui
 from jelly import Jelly
 from item import Item
 from fireitem import FireItem
@@ -34,8 +35,11 @@ def enter():
 
     global hpui
     hpui=Hpui()
-    #gfw.world.add(gfw.layer.ui, hpui)
+    gfw.world.add(gfw.layer.ui, hpui)
 
+    global hpbar
+    hpbar = Hpbarui()
+    gfw.world.add(gfw.layer.ui, hpbar)
 
     stage_gen.load(gobj.res('stage_01.txt'))
 
@@ -81,9 +85,19 @@ def check_jelly():
 def check_obstacles():
     for enemy in gfw.world.objects_at(gfw.layer.enemy):
         if enemy.hit: continue
+
         if gobj.collides_box(player, enemy):
             print('Hit', enemy)
             enemy.hit = True
+            if player.BigCheck==True:
+                hpbar.sizex -=0
+                hpbar.sizex2-=0
+            if player.FireCheck==True:
+                hpbar.sizex -=0
+                hpbar.sizex2-=0
+            else:
+                hpbar.sizex -= 10
+                hpbar.sizex2 -=5
 
 def draw():
     gfw.world.draw()

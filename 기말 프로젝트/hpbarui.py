@@ -4,16 +4,18 @@ import gobj
 
 from gobj import *
 
-class Hpui:
+class Hpbarui:
    def __init__(self):
-
-     self.image = gfw.image.load(gobj.res('HpUi.png'))
+     self.sizex=530
+     self.sizex2=650
+     self.image = gfw.image.load(gobj.res('hpbar.png'))
 
    def update(self):
-      pass
+      self.sizex -= 0.25
+      self.sizex2-=0.125
 
    def draw(self):
-      self.image.clip_draw(0,0,100,100,340,600,75,75)
+      self.image.clip_draw(0,0,530,50,self.sizex2,600,self.sizex,50)
 
    def handle_event(self,e):
       pass
