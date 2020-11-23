@@ -22,3 +22,29 @@
 ![screen](./img/10주계획.png)
 
 
+
+![screen](./img/2-1.png)
+
+![screen](./img/2-2.png)
+
+![screen](./img/2-3.png)
+
+![screen](./img/2-4.png)
+
+![screen](./img/2-5.png)
+
+![screen](./img/2-6.png)
+
+![screen](./img/2-7.png)
+
+![screen](./img/2-8.png)
+
+![screen](./img/2-9.png)
+
+![screen](./img/2-10.png)
+
+![screen](./img/2-11.png)
+
+![screen](./img/2-12.png)
+
+![screen](./img/2-13.png)
