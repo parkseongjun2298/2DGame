@@ -23,7 +23,7 @@ canvas_width = 1120
 canvas_height = 630
 
 
-
+SCORE_TEXT_COLOR=(255,255,255)
 def enter():
     gfw.world.init(['bg', 'platform', 'enemy', 'jelly','coin','item','hpitem','fireitem', 'player','ui'])
 
@@ -54,13 +54,17 @@ def enter():
     global jellyui
     jellyui = Jellyui()
     gfw.world.add(gfw.layer.ui, jellyui)
-
+    global font,score,jellyscore
     stage_gen.load(gobj.res('stage_01.txt'))
-
+    font = gfw.font.load('res/CookieRun Bold.ttf', 35)
+    score = 0
+    jellyscore=0
 paused = False
 def update():
     if paused:
         return
+
+    global score,jellyscore
     gfw.world.update()
 
     dx = -300 * gfw.delta_time
@@ -74,10 +78,12 @@ def update():
     check_fireitems()
     check_hpitems()
     check_jelly()
-    check_coin()
     check_obstacles()
-
+    check_coin()
     stage_gen.update(dx)
+
+
+
 
 def check_items():
     for item in gfw.world.objects_at(gfw.layer.item):
@@ -104,11 +110,15 @@ def check_jelly():
     for jelly in gfw.world.objects_at(gfw.layer.jelly):
         if gobj.collides_box(player, jelly):
             gfw.world.remove(jelly)
+            global jellyscore
+            jellyscore+=33
             break
 def check_coin():
     for coin in gfw.world.objects_at(gfw.layer.coin):
         if gobj.collides_box(player, coin):
             gfw.world.remove(coin)
+            global score
+            score+=10
             break
 
 def check_obstacles():
@@ -131,6 +141,11 @@ def check_obstacles():
 def draw():
     gfw.world.draw()
     gobj.draw_collision_box()
+    score_pos = get_canvas_height()//2-225, get_canvas_height()//2+85
+    font.draw(*score_pos, '%.0f'%score , SCORE_TEXT_COLOR)
+    jellyscore_pos=get_canvas_height()//2+55, get_canvas_height()//2+210
+    font.draw(*jellyscore_pos, '%.0f' % jellyscore, SCORE_TEXT_COLOR)
+    print(score)
 
 def handle_event(e):
     # prev_dx = boy.dx

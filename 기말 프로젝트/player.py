@@ -94,13 +94,12 @@ class Player:
         if self.state != Player.RUNNING:
             return
         self.state = Player.SLIDING
-        self.time = 0.0
+
     def update(self):
         self.update_mag()
         self.cookie_time += gfw.delta_time
         self.time += gfw.delta_time
-        if self.state == Player.SLIDING and self.time > Player.SLIDE_DURATION:
-            self.state = Player.RUNNING
+
         if self.state in [Player.JUMPING, Player.DOUBLE_JUMP, Player.FALLING]:
             # print('jump speed:', self.jump_speed)
             self.move((0, self.jump_speed * gfw.delta_time))
@@ -203,6 +202,9 @@ class Player:
                 self.change_image(-1)
             elif e.key == SDLK_RIGHTBRACKET:
                 self.change_image(1)
+        elif e.type == SDL_KEYUP:
+            if e.key==SDLK_RETURN:
+                self.state=Player.RUNNING
 
     def get_bb(self):
         l,b,r,t = Player.BB_DIFFS[self.state]

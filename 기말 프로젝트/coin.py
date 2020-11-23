@@ -21,6 +21,7 @@ class Coin:
         self.image = gfw.image.load(gobj.res('coin.png'))
         index = random.randint(1, 1) if type == Coin.TYPE_R else type
         self.rect = get_ITEM_rect(index)
+        self.score=0
     def update(self): pass
     def draw(self):
         self.image.clip_draw(*self.rect, self.x, self.y)
