@@ -127,13 +127,15 @@ def check_obstacles():
 
         if gobj.collides_box(player, enemy):
             print('Hit', enemy)
+
             enemy.hit = True
             if player.BigCheck==True:
                 hpbar.sizex -=0
                 hpbar.sizex2-=0
-            if player.FireCheck==True:
-                hpbar.sizex -=0
-                hpbar.sizex2-=0
+            elif player.FireCheck==True:
+                 hpbar.sizex -=0
+                 hpbar.sizex2-=0
+
             else:
                 hpbar.sizex -= 10
                 hpbar.sizex2 -=5

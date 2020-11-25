@@ -53,6 +53,7 @@ class Player:
         self.FireCheck=False
         self.FireTime=0
         self.FireSpeed=1
+
         # self.char_time = 0
         # self.cookie_name = 'Brave Cookie'
 
@@ -135,6 +136,7 @@ class Player:
                     self.FireSpeed = 1
                     self.FireTime=0
                     self.FireCheck=False
+
 
     def get_platform(self, foot):
         selected = None

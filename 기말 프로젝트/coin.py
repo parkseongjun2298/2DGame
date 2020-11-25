@@ -5,7 +5,7 @@ import gobj
 
 COIN_BORDER = 1
 COIN_SIZE = 156
-BB_RADIUS = COIN_SIZE/2
+BB_RADIUS = COIN_SIZE/4
 
 def get_ITEM_rect(index):
     ix, iy = index % 1, index // 1
@@ -24,7 +24,7 @@ class Coin:
         self.score=0
     def update(self): pass
     def draw(self):
-        self.image.clip_draw(*self.rect, self.x, self.y)
+        self.image.clip_draw(*self.rect, self.x, self.y,50,50)
     def move(self, dx):
         self.x += dx
         if self.x + COIN_SIZE < 0:
