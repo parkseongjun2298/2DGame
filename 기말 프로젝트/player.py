@@ -7,13 +7,14 @@ import json
 PLAYER_SIZE = 270
 
 class Player:
-    RUNNING, FALLING, JUMPING, DOUBLE_JUMP, SLIDING = range(5)
+    RUNNING, FALLING, JUMPING, DOUBLE_JUMP, SLIDING,DIE = range(6)
     ANIMS_11x6 = [
         [ 0x40, 0x41, 0x42, 0x43 ], # RUNNING
         [ 0x50 ],                   # FALLING
         [ 0x57, 0x58 ],             # JUMPING
         [ 0x51, 0x52, 0x53, 0x54 ], # DOUBLE_JUMP
         [ 0x59, 0x5A ],             # SLIDING
+        [0x15,0x16,0x17,0x18,0x19], #DIE
     ]
     ANIMS_13x6 = [
         [ 0x40, 0x41, 0x42, 0x43 ], # RUNNING
@@ -21,6 +22,7 @@ class Player:
         [ 0x56, 0x57 ],             # JUMPING
         [ 0x51, 0x52, 0x53, 0x54 ], # DOUBLE_JUMP
         [ 0x58, 0x59 ],             # SLIDING
+        [0x15, 0x16, 0x17, 0x18, 0x19],  # DIE
     ]
     MAGNIFIED_RUN_ANIM = [ 0x44, 0x45, 0x46, 0x47 ]
     BB_DIFFS = [
@@ -29,6 +31,7 @@ class Player:
         (-60,-135,60,-20), # JUMPING
         (-60,-135,60,-20), # DOUBLE_JUMP
         (-80,-135,80,-68), # SLIDING
+        (-80, -135, 80, -68),  # DIE
     ]
     SLIDE_DURATION = 1.0
 
@@ -53,6 +56,8 @@ class Player:
         self.FireCheck=False
         self.FireTime=0
         self.FireSpeed=1
+        self.die=False
+        self.fin=False
 
         # self.char_time = 0
         # self.cookie_name = 'Brave Cookie'
@@ -96,6 +101,7 @@ class Player:
             return
         self.state = Player.SLIDING
 
+
     def update(self):
         self.update_mag()
         self.cookie_time += gfw.delta_time
@@ -122,6 +128,7 @@ class Player:
                     self.state = Player.RUNNING
                     self.jump_speed = 0
                     # print('Now running', t, foot)
+
         if self.BigCheck==True:
                 self.BigTime+=gfw.delta_time
                 self.magnify()
@@ -136,6 +143,11 @@ class Player:
                     self.FireSpeed = 1
                     self.FireTime=0
                     self.FireCheck=False
+        if self.die==True:
+            self.state=Player.DIE
+            self.fin=True
+
+
 
 
     def get_platform(self, foot):
@@ -197,9 +209,6 @@ class Player:
                 self.slide()
             elif e.key == SDLK_SPACE:
                 self.jump()
-            elif e.key == SDLK_DOWN:
-                self.move_down_from_platform()
-
             elif e.key == SDLK_LEFTBRACKET:
                 self.change_image(-1)
             elif e.key == SDLK_RIGHTBRACKET:

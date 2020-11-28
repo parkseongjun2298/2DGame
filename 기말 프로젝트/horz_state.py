@@ -63,7 +63,10 @@ paused = False
 def update():
     if paused:
         return
-
+    if player.fin==True:
+        return
+    if hpbar.die==True:
+       player.die=True
     global score,jellyscore
     gfw.world.update()
 
@@ -147,7 +150,7 @@ def draw():
     font.draw(*score_pos, '%.0f'%score , SCORE_TEXT_COLOR)
     jellyscore_pos=get_canvas_height()//2+55, get_canvas_height()//2+210
     font.draw(*jellyscore_pos, '%.0f' % jellyscore, SCORE_TEXT_COLOR)
-    print(score)
+
 
 def handle_event(e):
     # prev_dx = boy.dx
