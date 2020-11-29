@@ -10,8 +10,9 @@ def enter():
     image = load_image(RES_DIR + '/cookie_run_bg_1.png')
     global player
     player = Player()
-
-
+    global music_bg
+    music_bg = load_music('res/Lobby.ogg')
+    music_bg.repeat_play()
 def update():
     pass
 
@@ -41,7 +42,8 @@ def handle_event(e):
 def exit():
     global image
     del image
-
+    global music_bg
+    del music_bg
 
 def pause():
     pass

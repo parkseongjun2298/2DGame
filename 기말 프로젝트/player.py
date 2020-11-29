@@ -58,7 +58,8 @@ class Player:
         self.FireSpeed=1
         self.die=False
         self.fin=False
-
+        self.wav_jump = load_wav('res/Jump.ogg')
+        self.wav_slide= load_wav('res/Slide.ogg')
         # self.char_time = 0
         # self.cookie_name = 'Brave Cookie'
 
@@ -206,8 +207,10 @@ class Player:
     def handle_event(self, e):
         if e.type == SDL_KEYDOWN:
             if e.key == SDLK_RETURN:
+                self.wav_slide.play()
                 self.slide()
             elif e.key == SDLK_SPACE:
+                self.wav_jump.play()
                 self.jump()
             elif e.key == SDLK_LEFTBRACKET:
                 self.change_image(-1)

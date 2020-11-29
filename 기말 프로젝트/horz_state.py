@@ -59,13 +59,25 @@ def enter():
     font = gfw.font.load('res/CookieRun Bold.ttf', 35)
     score = 0
     jellyscore=0
+
+    global music_bg, wav_item,wav_hit,wav_jelly,wav_death
+    music_bg = load_music('res/Land1.ogg')
+    wav_item = load_wav('res/Hp_item.ogg')
+
+
+    wav_hit= load_wav('res/Collide.ogg')
+    wav_jelly= load_wav('res/Jelly.ogg')
+    wav_death= load_wav('res/Death.ogg')
+    music_bg.repeat_play()
 paused = False
 def update():
     if paused:
         return
     if player.fin==True:
+        music_bg.stop()
         return
     if hpbar.die==True:
+       wav_death.play()
        player.die=True
     global score,jellyscore
     gfw.world.update()
@@ -93,6 +105,7 @@ def check_items():
         if gobj.collides_box(player, item):
             gfw.world.remove(item)
             player.BigCheck=True
+            wav_item.play()
 
             break
 def check_fireitems():
@@ -100,7 +113,7 @@ def check_fireitems():
         if gobj.collides_box(player, fireitem):
             gfw.world.remove(fireitem)
             player.FireCheck = True
-
+            wav_item.play()
             break
 def check_hpitems():
     for hpitem in gfw.world.objects_at(gfw.layer.hpitem):
@@ -108,6 +121,7 @@ def check_hpitems():
             gfw.world.remove(hpitem)
             hpbar.sizex += 20
             hpbar.sizex2 += 10
+            wav_item.play()
             break
 def check_jelly():
     for jelly in gfw.world.objects_at(gfw.layer.jelly):
@@ -115,6 +129,7 @@ def check_jelly():
             gfw.world.remove(jelly)
             global jellyscore
             jellyscore+=33
+            wav_jelly.play()
             break
 def check_coin():
     for coin in gfw.world.objects_at(gfw.layer.coin):
@@ -122,6 +137,7 @@ def check_coin():
             gfw.world.remove(coin)
             global score
             score+=10
+            #wav_jelly.play()
             break
 
 def check_obstacles():
@@ -142,6 +158,7 @@ def check_obstacles():
             else:
                 hpbar.sizex -= 10
                 hpbar.sizex2 -=5
+                wav_hit.play()
 
 def draw():
     gfw.world.draw()
@@ -177,7 +194,11 @@ def handle_event(e):
         return
 
 def exit():
-    pass
+        global music_bg, wav_item,wav_hit,wav_jelly
+        del music_bg
+        del wav_item
+        del wav_hit
+        del wav_jelly
 
 
 
