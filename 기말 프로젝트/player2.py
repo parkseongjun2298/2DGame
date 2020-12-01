@@ -61,6 +61,7 @@ class Player2:
         self.wav_jump = load_wav('res/Jump.ogg')
         self.wav_slide= load_wav('res/Slide.ogg')
         self.hitcheck=False
+        self.magnet = False
         # self.char_time = 0
         # self.cookie_name = 'Brave Cookie'
 

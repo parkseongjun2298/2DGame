@@ -4,6 +4,7 @@ from pico2d import *
 import gobj
 from player import Player
 from player2 import Player2
+from player3 import Player3
 from background import HorzScrollBackground
 from platform import Platform
 
@@ -43,6 +44,8 @@ def enter():
         player = Player()
     if charnum==1:
         player = Player2()
+    if charnum==2:
+        player = Player3()
 
     player.bg = bg
     gfw.world.add(gfw.layer.player, player)
@@ -83,6 +86,10 @@ def enter():
     global hiteffect
     hiteffect = gfw.image.load('res/lowHpScreen.png')
 
+
+
+
+
 paused = False
 def update():
 
@@ -111,6 +118,28 @@ def update():
     check_obstacles()
     check_coin()
     stage_gen.update(dx)
+
+
+    if player.magnet == True:
+        follow_mouse_target()
+
+def follow_mouse_target():
+    for jelly in gfw.world.objects_at(gfw.layer.jelly):
+        dx, dy = player.pos[0] - jelly.x, player.pos[1] - jelly.y
+        distance = math.sqrt(dx ** 2 + dy ** 2)
+        if distance == 0:
+            return
+        elif distance <= 300:
+            jelly.x-=0.01*player.pos[0]
+            jelly.y += 0.01 * (player.pos[1]-240)
+    for coin in gfw.world.objects_at(gfw.layer.coin):
+        dx, dy = player.pos[0] - coin.x, player.pos[1] - coin.y
+        distance = math.sqrt(dx ** 2 + dy ** 2)
+        if distance == 0:
+            return
+        elif distance <= 300:
+            coin.x-=0.01*player.pos[0]
+            coin.y += 0.01 * (player.pos[1]-240)
 
 
 
@@ -187,8 +216,8 @@ def draw():
     jellyscore_pos=get_canvas_height()//2+55, get_canvas_height()//2+210
     font.draw(*jellyscore_pos, '%.0f' % jellyscore, SCORE_TEXT_COLOR)
     if player.hitcheck==True:
-        center = get_canvas_width() // 2, get_canvas_height() * 2 // 3
-        hiteffect.draw(*center)
+        center = get_canvas_width() // 2, get_canvas_height() * 2 // 3-100
+        hiteffect.clip_draw(0,0,256,256,*center,1100,600)
         player.hitcheck = False
 
 

@@ -18,7 +18,7 @@ def update():
 
 
 def draw():
-    image.draw(600, 320)
+    image.draw(560, 320)
 
 
 def handle_event(e):
@@ -28,16 +28,22 @@ def handle_event(e):
         gfw.quit()
     elif e.type == SDL_MOUSEBUTTONDOWN:
         mposx = mouse_x(e)
-        if mposx <= 550:
+        if mposx <= 373:
             Temp.temp=0
             player.imagenum=0
             horz_state.charnum = 0
             gfw.push(horz_state)
 
-        if mposx > 550:
+        if mposx > 373 and mposx <=746:
             Temp.temp = 1
             player.imagenum=1
             horz_state.charnum=1
+            gfw.push(horz_state)
+
+        if mposx > 746 and mposx <= 1120:
+            Temp.temp = 2
+            player.imagenum = 2
+            horz_state.charnum = 2
             gfw.push(horz_state)
 
 

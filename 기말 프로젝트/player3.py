@@ -6,7 +6,7 @@ import json
 
 PLAYER_SIZE = 270
 
-class Player:
+class Player3:
     RUNNING, FALLING, JUMPING, DOUBLE_JUMP, SLIDING,DIE = range(6)
     ANIMS_11x6 = [
         [ 0x40, 0x41, 0x42, 0x43 ], # RUNNING
@@ -40,7 +40,7 @@ class Player:
 
     #constructor
     def __init__(self):
-        self.pos = 150, 240
+        self.pos = 150, get_canvas_height() // 2
         self.delta = 0, 0
         # self.image = gfw.image.load(gobj.res('cookie.png'))
         self.time = 0
@@ -48,9 +48,9 @@ class Player:
         self.mag = 1
         self.mag_speed = 0
         # self.anims = Player.ANIMS_11x6
-        self.imagenum=0
+        self.imagenum=2
         self.change_image(self.imagenum)
-        self.state = Player.RUNNING
+        self.state = Player3.RUNNING
         self.BigCheck=False
         self.BigTime=0
         self.FireCheck=False
@@ -61,7 +61,7 @@ class Player:
         self.wav_jump = load_wav('res/Jump.ogg')
         self.wav_slide= load_wav('res/Slide.ogg')
         self.hitcheck=False
-        self.magnet=False
+        self.magnet = True
         # self.char_time = 0
         # self.cookie_name = 'Brave Cookie'
 
@@ -92,17 +92,17 @@ class Player:
         self.mag_speed = -1.0
 
     def jump(self):
-        if self.state in [Player.FALLING, Player.DOUBLE_JUMP, Player.SLIDING]: 
+        if self.state in [Player3.FALLING, Player3.DOUBLE_JUMP, Player3.SLIDING]:
             return
-        if self.state == Player.RUNNING:
-            self.state = Player.JUMPING
-        elif self.state == Player.JUMPING:
-            self.state = Player.DOUBLE_JUMP
-        self.jump_speed = Player.JUMP * self.mag
+        if self.state == Player3.RUNNING:
+            self.state = Player3.JUMPING
+        elif self.state == Player3.JUMPING:
+            self.state = Player3.DOUBLE_JUMP
+        self.jump_speed = Player3.JUMP * self.mag
     def slide(self):
-        if self.state != Player.RUNNING:
+        if self.state != Player3.RUNNING:
             return
-        self.state = Player.SLIDING
+        self.state = Player3.SLIDING
 
 
     def update(self):
@@ -110,25 +110,25 @@ class Player:
         self.cookie_time += gfw.delta_time
         self.time += gfw.delta_time
 
-        if self.state in [Player.JUMPING, Player.DOUBLE_JUMP, Player.FALLING]:
+        if self.state in [Player3.JUMPING, Player3.DOUBLE_JUMP, Player3.FALLING]:
             # print('jump speed:', self.jump_speed)
             self.move((0, self.jump_speed * gfw.delta_time))
-            self.jump_speed -= Player.GRAVITY * self.mag * gfw.delta_time
+            self.jump_speed -= Player3.GRAVITY * self.mag * gfw.delta_time
         _,foot,_,_ = self.get_bb()
         if foot < 0:
             self.move((0, get_canvas_height()))
         platform = self.get_platform(foot)
         if platform is not None:
             l,b,r,t = platform.get_bb()
-            if self.state in [Player.RUNNING, Player.SLIDING]:
+            if self.state in [Player3.RUNNING, Player3.SLIDING]:
                 if foot > t:
-                    self.state = Player.FALLING
+                    self.state = Player3.FALLING
                     self.jump_speed = 0
             else:
                 # print('falling', t, foot)
                 if self.jump_speed < 0 and int(foot) <= t:
                     self.move((0, t - foot))
-                    self.state = Player.RUNNING
+                    self.state = Player3.RUNNING
                     self.jump_speed = 0
                     # print('Now running', t, foot)
 
@@ -147,9 +147,8 @@ class Player:
                     self.FireTime=0
                     self.FireCheck=False
         if self.die==True:
-            self.state=Player.DIE
+            self.state=Player3.DIE
             self.fin=True
-
 
 
 
@@ -175,7 +174,7 @@ class Player:
         return selected
 
     def move_down_from_platform(self):
-        if self.state != Player.RUNNING: return
+        if self.state != Player3.RUNNING: return
         _,foot,_,_ = self.get_bb()
         platform = self.get_platform(foot)
         print('can pass:', platform.can_pass)
@@ -221,10 +220,10 @@ class Player:
                 self.change_image(1)
         elif e.type == SDL_KEYUP:
             if e.key==SDLK_RETURN:
-                self.state=Player.RUNNING
+                self.state=Player3.RUNNING
 
     def get_bb(self):
-        l,b,r,t = Player.BB_DIFFS[self.state]
+        l,b,r,t = Player3.BB_DIFFS[self.state]
         b = - PLAYER_SIZE // 2
         x,y = self.pos
         if self.mag != 1:
@@ -261,7 +260,7 @@ class Player:
         global PLAYER_SIZE
         prev_size = PLAYER_SIZE
         PLAYER_SIZE = cookie["size"]
-        self.anims = Player.ANIMS_11x6 if cookie["xcount"] == 11 else Player.ANIMS_13x6
+        self.anims = Player3.ANIMS_11x6 if cookie["xcount"] == 11 else Player3.ANIMS_13x6
 
         x,y = self.pos
         diff = (PLAYER_SIZE - prev_size) // 2
