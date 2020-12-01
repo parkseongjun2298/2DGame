@@ -3,6 +3,7 @@ import gfw
 from pico2d import *
 import gobj
 from player import Player
+from player2 import Player2
 from background import HorzScrollBackground
 from platform import Platform
 
@@ -18,12 +19,14 @@ from coin import Coin
 from hpitem import Hpitem
 
 import stage_gen
-
+import title_state
 canvas_width = 1120
 canvas_height = 630
 
 
 SCORE_TEXT_COLOR=(255,255,255)
+SCORE_END_COLOR=(0,0,0)
+SCORE_END_COLOR2=(255,0,0)
 def enter():
     gfw.world.init(['bg', 'platform', 'enemy', 'jelly','coin','item','hpitem','fireitem', 'player','ui'])
 
@@ -33,9 +36,14 @@ def enter():
         bg = HorzScrollBackground('cookie_run_bg_%d.png' % n)
         bg.speed = speed
         gfw.world.add(gfw.layer.bg, bg)
+    global charnum
 
     global player
-    player = Player()
+    if charnum==0:
+        player = Player()
+    if charnum==1:
+        player = Player2()
+
     player.bg = bg
     gfw.world.add(gfw.layer.player, player)
 
@@ -69,8 +77,15 @@ def enter():
     wav_jelly= load_wav('res/Jelly.ogg')
     wav_death= load_wav('res/Death.ogg')
     music_bg.repeat_play()
+
+    global game_over_image
+    game_over_image = gfw.image.load('res/score.png')
+    global hiteffect
+    hiteffect = gfw.image.load('res/lowHpScreen.png')
+
 paused = False
 def update():
+
     if paused:
         return
     if player.fin==True:
@@ -156,18 +171,37 @@ def check_obstacles():
                  hpbar.sizex2-=0
 
             else:
+                player.hitcheck=True
                 hpbar.sizex -= 10
                 hpbar.sizex2 -=5
                 wav_hit.play()
 
+
+
+
 def draw():
     gfw.world.draw()
-    gobj.draw_collision_box()
+    #gobj.draw_collision_box()
     score_pos = get_canvas_height()//2-225, get_canvas_height()//2+85
     font.draw(*score_pos, '%.0f'%score , SCORE_TEXT_COLOR)
     jellyscore_pos=get_canvas_height()//2+55, get_canvas_height()//2+210
     font.draw(*jellyscore_pos, '%.0f' % jellyscore, SCORE_TEXT_COLOR)
+    if player.hitcheck==True:
+        center = get_canvas_width() // 2, get_canvas_height() * 2 // 3
+        hiteffect.draw(*center)
+        player.hitcheck = False
 
+
+    if player.fin == True:
+        center = get_canvas_width() // 2, get_canvas_height() * 2 // 3
+        game_over_image.draw(*center)
+        score_pos = get_canvas_height() // 2+350 , get_canvas_height() // 2+90
+        font.draw(*score_pos, '%.0f' % score, SCORE_END_COLOR)
+        jellyscore_pos = get_canvas_height() // 2+350 , get_canvas_height() // 2+60
+        font.draw(*jellyscore_pos, '%.0f' % jellyscore, SCORE_END_COLOR)
+        finalscore=score+jellyscore
+        finalscore_pos= get_canvas_height() // 2 +210 , get_canvas_height() // 2 +135
+        font.draw(*finalscore_pos, '%.0f' % finalscore, SCORE_END_COLOR2)
 
 def handle_event(e):
     # prev_dx = boy.dx
@@ -189,6 +223,9 @@ def handle_event(e):
         elif e.key == SDLK_p:
             global paused
             paused = not paused
+    elif e.type == SDL_MOUSEBUTTONDOWN:
+        gfw.change(title_state)
+
 
     if player.handle_event(e):
         return

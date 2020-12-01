@@ -7,7 +7,7 @@ from gobj import *
 
 def enter():
     global image
-    image = load_image(RES_DIR + '/cookie_run_bg_1.png')
+    image = load_image(RES_DIR + '/charselect.png')
     global player
     player = Player()
     global music_bg
@@ -18,7 +18,7 @@ def update():
 
 
 def draw():
-    image.draw(640, 360)
+    image.draw(600, 320)
 
 
 def handle_event(e):
@@ -31,11 +31,13 @@ def handle_event(e):
         if mposx <= 550:
             Temp.temp=0
             player.imagenum=0
+            horz_state.charnum = 0
             gfw.push(horz_state)
 
         if mposx > 550:
             Temp.temp = 1
             player.imagenum=1
+            horz_state.charnum=1
             gfw.push(horz_state)
 
 
