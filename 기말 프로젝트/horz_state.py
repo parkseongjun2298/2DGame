@@ -18,6 +18,7 @@ from item import Item
 from fireitem import FireItem
 from coin import Coin
 from hpitem import Hpitem
+from magnetitem import MagnetItem
 
 import stage_gen
 import title_state
@@ -29,7 +30,7 @@ SCORE_TEXT_COLOR=(255,255,255)
 SCORE_END_COLOR=(0,0,0)
 SCORE_END_COLOR2=(255,0,0)
 def enter():
-    gfw.world.init(['bg', 'platform', 'enemy', 'jelly','coin','item','hpitem','fireitem', 'player','ui'])
+    gfw.world.init(['bg', 'platform', 'enemy', 'jelly','coin','item','hpitem','magnetitem','fireitem', 'player','ui'])
 
     center = get_canvas_width() // 2, get_canvas_height() // 2
 
@@ -71,13 +72,15 @@ def enter():
     score = 0
     jellyscore=0
 
-    global music_bg, wav_item,wav_hit,wav_jelly,wav_death
+    global music_bg, wav_item,wav_hit,wav_jelly,wav_death,wav_coin,wav_itembig,wav_itembuster,wav_itemmagnet
     music_bg = load_music('res/Land1.ogg')
-    wav_item = load_wav('res/Hp_item.ogg')
-
-
+    wav_itemmagnet=load_wav('res/i_magnet.ogg')
+    wav_item = load_wav('res/i_hp.ogg')
+    wav_itembig= load_wav('res/i_giant.ogg')
+    wav_itembuster= load_wav('res/i_buster.ogg')
     wav_hit= load_wav('res/Collide.ogg')
     wav_jelly= load_wav('res/Jelly.ogg')
+    wav_coin= load_wav('res/g_coin.ogg')
     wav_death= load_wav('res/Death.ogg')
     music_bg.repeat_play()
 
@@ -114,6 +117,7 @@ def update():
     check_items()
     check_fireitems()
     check_hpitems()
+    check_magnetitems()
     check_jelly()
     check_obstacles()
     check_coin()
@@ -140,6 +144,30 @@ def follow_mouse_target():
         elif distance <= 300:
             coin.x-=0.01*player.pos[0]
             coin.y += 0.01 * (player.pos[1]-240)
+    for item in gfw.world.objects_at(gfw.layer.item):
+        dx, dy = player.pos[0] - item.x, player.pos[1] - item.y
+        distance = math.sqrt(dx ** 2 + dy ** 2)
+        if distance == 0:
+            return
+        elif distance <= 300:
+            item.x-=0.01*player.pos[0]
+            item.y += 0.01 * (player.pos[1]-240)
+    for fireitem in gfw.world.objects_at(gfw.layer.fireitem):
+        dx, dy = player.pos[0] - fireitem.x, player.pos[1] - fireitem.y
+        distance = math.sqrt(dx ** 2 + dy ** 2)
+        if distance == 0:
+            return
+        elif distance <= 300:
+            fireitem.x-=0.01*player.pos[0]
+            fireitem.y += 0.01 * (player.pos[1]-240)
+    for hpitem in gfw.world.objects_at(gfw.layer.hpitem):
+        dx, dy = player.pos[0] - hpitem.x, player.pos[1] - hpitem.y
+        distance = math.sqrt(dx ** 2 + dy ** 2)
+        if distance == 0:
+            return
+        elif distance <= 300:
+            hpitem.x-=0.01*player.pos[0]
+            hpitem.y += 0.01 * (player.pos[1]-240)
 
 
 
@@ -149,7 +177,7 @@ def check_items():
         if gobj.collides_box(player, item):
             gfw.world.remove(item)
             player.BigCheck=True
-            wav_item.play()
+            wav_itembig.play()
 
             break
 def check_fireitems():
@@ -157,7 +185,14 @@ def check_fireitems():
         if gobj.collides_box(player, fireitem):
             gfw.world.remove(fireitem)
             player.FireCheck = True
-            wav_item.play()
+            wav_itembuster.play()
+            break
+def check_magnetitems():
+    for magnetitem in gfw.world.objects_at(gfw.layer.magnetitem):
+        if gobj.collides_box(player, magnetitem):
+            gfw.world.remove(magnetitem)
+            player.magnet=True
+            wav_itemmagnet.play()
             break
 def check_hpitems():
     for hpitem in gfw.world.objects_at(gfw.layer.hpitem):
@@ -181,7 +216,7 @@ def check_coin():
             gfw.world.remove(coin)
             global score
             score+=10
-            #wav_jelly.play()
+            wav_coin.play()
             break
 
 def check_obstacles():

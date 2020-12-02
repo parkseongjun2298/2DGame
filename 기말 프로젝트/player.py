@@ -60,8 +60,10 @@ class Player:
         self.fin=False
         self.wav_jump = load_wav('res/Jump.ogg')
         self.wav_slide= load_wav('res/Slide.ogg')
+        self.wav_death= load_wav('res/Death.ogg')
         self.hitcheck=False
         self.magnet=False
+        self.magnetTime=0
         # self.char_time = 0
         # self.cookie_name = 'Brave Cookie'
 
@@ -116,7 +118,8 @@ class Player:
             self.jump_speed -= Player.GRAVITY * self.mag * gfw.delta_time
         _,foot,_,_ = self.get_bb()
         if foot < 0:
-            self.move((0, get_canvas_height()))
+            self.die=True
+            self.wav_death.play()
         platform = self.get_platform(foot)
         if platform is not None:
             l,b,r,t = platform.get_bb()
@@ -146,6 +149,11 @@ class Player:
                     self.FireSpeed = 1
                     self.FireTime=0
                     self.FireCheck=False
+        if self.magnet == True:
+            self.magnetTime += gfw.delta_time
+            if self.magnetTime >= 4:
+                self.magnetTime = 0
+                self.magnet = False
         if self.die==True:
             self.state=Player.DIE
             self.fin=True
