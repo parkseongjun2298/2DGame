@@ -8,6 +8,7 @@ from item import Item
 from fireitem import FireItem
 from coin import Coin
 from hpitem import Hpitem
+from magnetitem import MagnetItem
 UNIT_PER_LINE = 100
 SCREEN_LINES = 10
 BLOCK_SIZE = 60
@@ -64,6 +65,9 @@ def create_object(ch, x, y):
     elif ch in ['8']:
         obj = Coin(ord(ch) - ord('8'), x, y)
         gfw.world.add(gfw.layer.coin, obj)
+    elif ch in ['9']:
+        obj = MagnetItem(ord(ch) - ord('9'), x, y)
+        gfw.world.add(gfw.layer.magnetitem, obj)
     elif ch in ['O','P','Q']:
         dy = 1 if ch == 'Q' else 3.8
         y -= int(dy * BLOCK_SIZE) // 2

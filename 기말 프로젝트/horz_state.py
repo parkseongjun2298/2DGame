@@ -92,7 +92,6 @@ def enter():
 
 
 
-
 paused = False
 def update():
 
@@ -126,6 +125,12 @@ def update():
 
     if player.magnet == True:
         follow_mouse_target()
+
+    if charnum == 1 and hpbar.sizex <= 50:
+        hpbar.sizex += 100
+        hpbar.sizex2 += 50
+
+
 
 def follow_mouse_target():
     for jelly in gfw.world.objects_at(gfw.layer.jelly):
