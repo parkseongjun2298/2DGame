@@ -14,7 +14,7 @@ def update():
         gfw.change(title_state)
 
 def draw():
-    image.draw(640,360)
+    image.draw(550,360)
 
 def handle_event(e):
      if e.type == SDL_QUIT:

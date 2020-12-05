@@ -85,7 +85,7 @@ class Player:
         y = y * (PLAYER_SIZE + 2) + 2
         size = PLAYER_SIZE * self.mag, PLAYER_SIZE * self.mag
         self.image.clip_draw(x, y, PLAYER_SIZE, PLAYER_SIZE, *self.pos, *size)
-
+        print(sprite_num)
 
 
     def magnify(self):
