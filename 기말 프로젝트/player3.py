@@ -63,6 +63,7 @@ class Player3:
         self.wav_death = load_wav('res/Death.ogg')
         self.hitcheck=False
         self.magnet = True
+        self.revive = 0
         # self.char_time = 0
         # self.cookie_name = 'Brave Cookie'
 

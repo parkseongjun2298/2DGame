@@ -126,9 +126,10 @@ def update():
     if player.magnet == True:
         follow_mouse_target()
 
-    if charnum == 1 and hpbar.sizex <= 50:
+    if charnum == 1 and hpbar.sizex <= 50 and player.revive==1:
         hpbar.sizex += 100
         hpbar.sizex2 += 50
+        player.revive=0
 
 
 

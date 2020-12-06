@@ -64,6 +64,7 @@ class Player:
         self.hitcheck=False
         self.magnet=False
         self.magnetTime=0
+        self.revive = 0
         # self.char_time = 0
         # self.cookie_name = 'Brave Cookie'
 
